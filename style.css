@@ -1701,8 +1701,103 @@ footer {
   }
 }
 
+/* Mobile Menu & Overlay elements hidden by default on desktop */
+#mobile-menu-trigger {
+  display: none;
+}
+.btn-close-menu {
+  display: none;
+}
+.nav-links-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(44, 34, 30, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.nav-links-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.mobile-search-item {
+  display: none;
+  width: 100%;
+}
+.mobile-only-search {
+  width: 100% !important;
+  margin-bottom: 20px;
+}
+.desktop-only-search {
+  display: flex;
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 992px) {
+  /* Header Mobile Menu adjustments */
+  #mobile-menu-trigger {
+    display: flex;
+    order: -1;
+  }
+  .btn-close-menu {
+    display: flex;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    width: 36px;
+    height: 36px;
+    background: var(--bg-paper);
+    border: 1px solid var(--border-gold);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-search-item {
+    display: block;
+  }
+  .desktop-only-search {
+    display: none !important;
+  }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background-color: var(--bg-cream);
+    border-right: 2px solid var(--accent);
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 80px 24px;
+    gap: 20px;
+    transform: translateX(-100%);
+    transition: var(--transition-smooth);
+  }
+  .nav-links.active {
+    transform: translateX(0);
+  }
+  .nav-links a {
+    font-size: 1.15rem;
+    width: 100%;
+    border-bottom: 1px solid var(--border-crimson);
+    padding-bottom: 12px;
+  }
+  .nav-links a::after {
+    display: none;
+  }
+
+  /* Hero adjustments */
   .hero-container {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1720,11 +1815,14 @@ footer {
     width: 380px;
     height: 380px;
   }
+
+  /* Builder and detail modal elements */
   .builder-container {
     grid-template-columns: 1fr;
   }
   .detail-layout {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
   .reviews-container {
     grid-template-columns: 1fr;
@@ -1735,15 +1833,182 @@ footer {
 }
 
 @media (max-width: 600px) {
+  /* Brand visual logo header */
+  .brand-logo {
+    font-size: 1.6rem;
+  }
+  .brand-logo span {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+  }
+
+  /* Hero text content */
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.5rem;
   }
   .hero-image-wrapper {
-    width: 290px;
-    height: 290px;
+    width: 280px;
+    height: 280px;
   }
+  .hero-badge {
+    bottom: 10px;
+    left: -10px;
+    padding: 10px;
+  }
+
+  /* 2-Column Responsive E-Commerce Grid on Mobile */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+  .product-card {
+    border-radius: 12px;
+  }
+  .product-img-container {
+    height: 150px;
+  }
+  .product-body {
+    padding: 12px;
+  }
+  .product-title {
+    font-size: 1.05rem;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .product-desc {
+    display: none; /* Hide product summaries in catalog for vertical space */
+  }
+  .product-price {
+    font-size: 1.05rem;
+  }
+  .btn-add-cart {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+
+  /* Gift Box Customizer elements stack and sizing */
+  .builder-sweets-list {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
+  }
+  .builder-sweet-item {
+    padding: 8px;
+    border-radius: 8px;
+  }
+  .builder-sweet-item img {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 4px;
+  }
+  .builder-sweet-item h5 {
+    font-size: 0.78rem;
+  }
+  .builder-sweet-item p {
+    font-size: 0.72rem;
+  }
+  .box-packaging-visual {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .box-grid {
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  .box-compartment .item-name {
+    font-size: 0.65rem;
+    line-height: 1.1;
+  }
+  .box-compartment img {
+    width: 70%;
+    height: 50%;
+  }
+
+  /* Detailed Drawer Modal - Fullscreen slide up with bottom-sticky action box */
+  .detail-container {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    border: none;
+    transform: translateY(100%);
+  }
+  .detail-modal.active .detail-container {
+    transform: translateY(0);
+  }
+  .btn-close-modal {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    background-color: var(--bg-white);
+  }
+  .detail-scroll-wrapper {
+    padding: 24px 16px 100px; /* Padding bottom allows clean scrolling above sticky drawer */
+  }
+  .detail-title {
+    font-size: 2.2rem;
+  }
+  .detail-desc-box {
+    padding: 20px 0;
+  }
+  .detail-image-showcase {
+    aspect-ratio: 1.2;
+    padding: 12px;
+    border-radius: 12px;
+  }
+  .detail-image-showcase img {
+    width: 80%;
+    height: 80%;
+  }
+  
+  /* Sticky buy box fixed at the bottom viewport on mobile */
+  .detail-buy-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 16px 16px 0 0;
+    border: none;
+    border-top: 1px solid var(--accent);
+    box-shadow: 0 -8px 24px rgba(44, 34, 30, 0.12);
+    z-index: 50;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-paper);
+  }
+  .qty-selector {
+    margin-bottom: 0;
+    gap: 8px;
+  }
+  #detail-add-to-cart-btn {
+    width: auto !important;
+    flex-grow: 1;
+    margin-left: 16px;
+    padding: 12px 20px;
+  }
+
+  /* Footer stack and layout centers */
   .footer-container {
     grid-template-columns: 1fr;
+    text-align: center;
+    gap: 32px;
+  }
+  .newsletter-form {
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .newsletter-form input {
+    border-radius: 20px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .newsletter-form button {
+    border-radius: 20px;
+    width: 100%;
   }
   .footer-bottom {
     flex-direction: column;
@@ -1753,10 +2018,5 @@ footer {
   .cart-drawer {
     width: 100%;
   }
-  .detail-scroll-wrapper {
-    padding: 20px;
-  }
-  .detail-title {
-    font-size: 2.2rem;
-  }
 }
+

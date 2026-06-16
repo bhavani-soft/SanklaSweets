@@ -14,12 +14,26 @@
   <!-- Header Navigation -->
   <header id="main-header">
     <div class="nav-container">
+      <!-- Hamburger menu trigger for mobile -->
+      <button class="btn-icon" id="mobile-menu-trigger" aria-label="Open Menu" style="order: -1;">
+        <span>☰</span>
+      </button>
+
       <a href="#" class="brand-logo" id="nav-brand">
         SANKLA
         <span>Est. 1954</span>
       </a>
       
-      <ul class="nav-links">
+      <div class="nav-links-overlay" id="nav-overlay"></div>
+      <ul class="nav-links" id="nav-menu">
+        <button class="btn-close-menu" id="mobile-menu-close" aria-label="Close Menu">×</button>
+        <!-- Mobile specific search input -->
+        <li class="mobile-search-item">
+          <div class="search-bar mobile-only-search">
+            <input type="text" id="mobile-search-input" placeholder="Search sweets...">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+        </li>
         <li><a href="#" class="active" data-section="home">Home</a></li>
         <li><a href="#catalog" data-section="catalog">Sweets Catalog</a></li>
         <li><a href="#gift-builder" data-section="builder">Gift Box Builder</a></li>
@@ -27,7 +41,7 @@
       </ul>
       
       <div class="nav-actions">
-        <div class="search-bar">
+        <div class="search-bar desktop-only-search">
           <input type="text" id="search-input" placeholder="Search sweets...">
           <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         </div>

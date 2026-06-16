@@ -195,6 +195,36 @@ window.addEventListener('scroll', () => {
 
 // Setup Event Listeners
 function setupEventListeners() {
+  // Mobile menu triggers
+  const mobileMenuTrigger = document.getElementById('mobile-menu-trigger');
+  const mobileMenuClose = document.getElementById('mobile-menu-close');
+  const navMenu = document.getElementById('nav-menu');
+  const navOverlay = document.getElementById('nav-overlay');
+
+  if (mobileMenuTrigger && navMenu && navOverlay) {
+    mobileMenuTrigger.addEventListener('click', () => {
+      navMenu.classList.add('active');
+      navOverlay.classList.add('active');
+    });
+  }
+
+  const closeMenu = () => {
+    if (navMenu) navMenu.classList.remove('active');
+    if (navOverlay) navOverlay.classList.remove('active');
+  };
+
+  if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu);
+  if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+
+  // Close mobile drawer when clicking navigation link
+  if (navMenu) {
+    navMenu.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        closeMenu();
+      }
+    });
+  }
+
   // Category tabs clicks
   categoryFilters.addEventListener('click', (e) => {
     if (e.target.classList.contains('category-tab')) {
@@ -205,11 +235,19 @@ function setupEventListeners() {
     }
   });
 
-  // Search input change
+  // Search inputs changes (desktop & mobile)
   searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.toLowerCase().trim();
     renderCatalog();
   });
+
+  const mobileSearchInput = document.getElementById('mobile-search-input');
+  if (mobileSearchInput) {
+    mobileSearchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.toLowerCase().trim();
+      renderCatalog();
+    });
+  }
 
   // Cart drawer toggle
   cartTrigger.addEventListener('click', openCart);
