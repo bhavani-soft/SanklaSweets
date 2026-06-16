@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sankla | Premium Handcrafted Indian Sweets</title>
+  <meta name="description" content="Discover Sankla's exquisite collection of traditional Indian sweets. Handcrafted with premium ingredients, royal recipes, and elegant presentation.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div class="bg-pattern"></div>
+
+  <!-- Header Navigation -->
+  <header id="main-header">
+    <div class="nav-container">
+      <a href="#" class="brand-logo" id="nav-brand">
+        SANKLA
+        <span>Est. 1954</span>
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#" class="active" data-section="home">Home</a></li>
+        <li><a href="#catalog" data-section="catalog">Sweets Catalog</a></li>
+        <li><a href="#gift-builder" data-section="builder">Gift Box Builder</a></li>
+        <li><a href="#reviews" data-section="reviews">Testimonials</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search sweets...">
+          <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        </div>
+        
+        <button class="btn-icon" id="cart-trigger" aria-label="Open Cart">
+          <span>🛒</span>
+          <div class="badge" id="cart-badge" style="display: none;">0</div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-subtitle">The Legacy of Luxury Sweets</div>
+        <h1 class="hero-title">Crafting a <span>Sweet</span> Digital Experience</h1>
+        <p class="hero-desc">Indulge in our time-honored traditional recipes made with rich, pure ghee, premium dry fruits, and handcrafted culinary art. Gift your loved ones the royal taste of Sankla.</p>
+        <div class="hero-btns">
+          <a href="#catalog" class="btn btn-primary">Explore Sweets</a>
+          <a href="#gift-builder" class="btn btn-secondary">Build a Gift Box</a>
+        </div>
+      </div>
+      
+      <div class="hero-showcase">
+        <div class="hero-image-wrapper">
+          <img src="assets/hero_sweets.png" alt="Sankla Premium Sweet Assortment">
+        </div>
+        
+        <div class="hero-badge">
+          <div class="icon">✨</div>
+          <div class="text">
+            <h4>100% Pure Ghee</h4>
+            <p>Traditional Indian Artistry</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <section class="catalog-section" id="catalog">
+    <div class="section-header">
+      <h2>Sweets Catalog</h2>
+      <p>Select from our range of artisanal creations, crafted by master confectioners.</p>
+      <div class="ornament-divider">
+        <span>✦</span>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="categories-container" id="category-filters">
+      <button class="category-tab active" data-category="all">All Sweets</button>
+      <button class="category-tab" data-category="ghee">Pure Ghee Sweets</button>
+      <button class="category-tab" data-category="dry-fruits">Dry Fruit Delicacies</button>
+      <button class="category-tab" data-category="traditional">Traditional Classics</button>
+      <button class="category-tab" data-category="boxes">Gift Hampers</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="products-grid-container">
+      <!-- Injected dynamically by app.js -->
+    </div>
+  </section>
+
+  <!-- Gift Box Builder Section -->
+  <section class="builder-section" id="gift-builder">
+    <div class="builder-container">
+      <div class="builder-settings">
+        <h3>Festive Gift Box Builder</h3>
+        <p class="subtitle">Customize a premium sweet hamper. Pick your box size and fill it with your favorite artisanal sweets!</p>
+        
+        <div class="box-size-selectors">
+          <button class="size-option active" data-size="4" id="btn-size-4">
+            <h4>Premium 4-Piece Box</h4>
+            <p>Rs. 450.00 Base Price</p>
+          </button>
+          <button class="size-option" data-size="9" id="btn-size-9">
+            <h4>Royal 9-Piece Box</h4>
+            <p>Rs. 890.00 Base Price</p>
+          </button>
+        </div>
+
+        <div class="builder-sweets-header">
+          <h4 style="margin-bottom: 12px; color: var(--primary);">Choose Sweets to Pack:</h4>
+        </div>
+        <div class="builder-sweets-list" id="builder-sweets-selector">
+          <!-- Injected dynamically by app.js -->
+        </div>
+      </div>
+
+      <div class="builder-visualizer">
+        <div class="box-packaging-visual">
+          <div class="box-title font-serif">Sankla Bespoke Box</div>
+          <div class="box-grid grid-4" id="builder-box-grid">
+            <!-- Compartments dynamically built based on size -->
+          </div>
+        </div>
+
+        <div class="box-summary">
+          <div class="box-price-total" id="builder-box-total">Total: Rs. 450.00</div>
+          <button class="btn btn-primary" id="btn-add-box-to-cart">Add Customized Box to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials & Reviews Section -->
+  <section class="customer-reviews-section" id="reviews">
+    <div class="section-header">
+      <h2>Guest Testimonials</h2>
+      <p>Read opinions and sweet memories from our loyal patrons.</p>
+      <div class="ornament-divider">
+        <span>✦</span>
+      </div>
+    </div>
+
+    <div class="reviews-container">
+      <!-- Ratings breakdown -->
+      <div class="reviews-aggregate">
+        <h3>Patron Trust</h3>
+        <div class="rating-huge" id="aggregate-rating-val">4.8</div>
+        <div class="rating-huge-stars" id="aggregate-stars">★★★★★</div>
+        <p class="rating-total-count" id="aggregate-total-count">Based on 215 Reviews</p>
+      </div>
+
+      <!-- Write a Review & Review list -->
+      <div class="reviews-write-box">
+        <h4>Share Your Sweet Experience</h4>
+        <p>Your feedback shapes the quality of our artisanal kitchen.</p>
+        
+        <form id="review-form">
+          <div class="form-group">
+            <label for="review-name">Your Name</label>
+            <input type="text" id="review-name" class="form-control" placeholder="Enter your name" required>
+          </div>
+          
+          <div class="form-group">
+            <label>Rating</label>
+            <div class="star-input" id="review-star-input">
+              <span data-star="1">★</span>
+              <span data-star="2">★</span>
+              <span data-star="3">★</span>
+              <span data-star="4">★</span>
+              <span data-star="5" class="active">★</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="review-comment">Your Thoughts</label>
+            <textarea id="review-comment" class="form-control" rows="4" placeholder="How did you like our sweets?" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Post Review</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Detail Drawer Modal (Designed similar to Dribbble showcase) -->
+  <div class="detail-modal" id="product-detail-modal">
+    <div class="detail-backdrop" id="detail-modal-close-trigger"></div>
+    <div class="detail-container">
+      <button class="btn-close-modal" id="detail-modal-close-btn" aria-label="Close modal">×</button>
+      
+      <div class="detail-scroll-wrapper">
+        <div class="detail-layout">
+          
+          <!-- Left Pane (Matches image description pane) -->
+          <div class="detail-left-pane">
+            <div class="detail-breadcrumbs" id="detail-breadcrumbs">Sankla &gt; Sweets &gt; Badam Halwa</div>
+            <h2 class="detail-title" id="detail-title">Badam Halwa</h2>
+            
+            <div class="detail-pricing-box">
+              <div class="detail-price" id="detail-price">Rs. 720.00</div>
+              <div class="detail-rating-summary">
+                <span class="stars" id="detail-rating-stars">★★★★★</span>
+                <span class="text" id="detail-rating-text">(4.8 / 5.0 Rating)</span>
+              </div>
+            </div>
+
+            <!-- Dribbble-style description ornament -->
+            <div class="detail-desc-box ornament-border">
+              <h4>Description</h4>
+              <p class="detail-desc-text" id="detail-desc-content">
+                Badam Halwa is a rich, decadent, nutty South Indian style melt-in-the-mouth halwa made mainly with 3 ingredients - blanched almonds, ghee (clarified butter) and sugar. This badam halwa recipe will make for one of the best almond halwas. It will surely remind you of the badam halwa that one gets in the South Indian sweets shops.
+              </p>
+            </div>
+
+            <!-- Dribbble-style Related products "YOU MAY ALSO LIKE IT" -->
+            <div class="related-section">
+              <div class="related-header">You May Also Like It</div>
+              <div class="related-slider" id="detail-related-container">
+                <!-- Related cards injected dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Pane (Image show, purchase actions, and reviews list) -->
+          <div class="detail-right-pane">
+            <div class="detail-image-showcase">
+              <img id="detail-main-img" src="assets/badam_halwa.png" alt="Badam Halwa Detail Image">
+            </div>
+
+            <div class="detail-buy-box">
+              <div class="qty-selector">
+                <span class="qty-label">Quantity:</span>
+                <div class="qty-controls">
+                  <button class="qty-btn" id="qty-minus">-</button>
+                  <div class="qty-value" id="qty-val">1</div>
+                  <button class="qty-btn" id="qty-plus">+</button>
+                </div>
+              </div>
+              <button class="btn btn-primary" id="detail-add-to-cart-btn" style="width: 100%;">Add to Shopping Cart</button>
+            </div>
+
+            <div class="detail-reviews">
+              <div class="detail-reviews-header">
+                <h4>Recent Reviews</h4>
+              </div>
+              <div class="reviews-list-compact" id="detail-reviews-list">
+                <!-- Compact reviews list injected dynamically -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Cart Drawer Slide-out -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <div class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h3>Your Sweet Order</h3>
+      <button id="cart-close-btn" style="font-size: 1.5rem; color: var(--text-dark);">×</button>
+    </div>
+    
+    <div class="cart-items" id="cart-items-container">
+      <!-- Cart items injected dynamically -->
+    </div>
+    
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>Cart Items:</span>
+        <span id="cart-summary-qty">0 items</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span>Order Total:</span>
+        <span id="cart-summary-total">Rs. 0.00</span>
+      </div>
+      <button class="btn btn-primary" id="btn-checkout" style="width: 100%;">Confirm and Place Order</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Checkout Success Splash Screen -->
+  <div class="checkout-overlay" id="checkout-overlay">
+    <div class="checkout-success-box">
+      <h2>Order Confirmed!</h2>
+      <p>Thank you for choosing Sankla Sweets. We are hand-packing your delicious selections now, freshly made with pure ghee and festive love. Your delivery details will arrive via email shortly.</p>
+      <button class="btn btn-secondary" id="checkout-success-close-btn" style="background-color: var(--accent); color: var(--text-dark); border: none;">Shop More Sweets</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4 class="font-serif">SANKLA SWEETS</h4>
+        <p>Serving premium Indian sweets since 1954. Made with traditional kitchen techniques, absolute purity, and premium packaging for festivals and royal celebrations.</p>
+        <p style="font-size: 0.85rem; color: var(--accent);">Address: 88, Heritage Chowk, Confectionery Road, IN</p>
+      </div>
+      
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#catalog">Sweets Catalog</a></li>
+          <li><a href="#gift-builder">Gift Box Builder</a></li>
+          <li><a href="#reviews">Testimonials</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">About Our Legacy</a></li>
+          <li><a href="#">Corporate Gifting</a></li>
+          <li><a href="#">Shipping & Deliveries</a></li>
+          <li><a href="#">Contact Confectionery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>The Sweet Letter</h4>
+        <p>Subscribe to receive news of limited-edition festive specials and royal sweet discounts.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" placeholder="Your Email Address" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2026 Sankla Sweets. All rights reserved.</p>
+      <p>Premium Confectioners | Designed with Traditional Craft</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
