@@ -1,5 +1,5 @@
-// Product Database
-const PRODUCTS = [
+﻿// Product Database Seeds
+const DEFAULT_PRODUCTS = [
   {
     id: 1,
     title: 'Badam Halwa',
@@ -79,11 +79,99 @@ const PRODUCTS = [
     reviewsCount: 120,
     img: 'assets/gift_box.png',
     desc: 'An elegantly designed Indian sweets gift box with gold filigree patterns. Contains partitioned rows of our best assorted colourful gourmet sweets.'
+  },
+  {
+    id: 9,
+    title: 'Royal Ghee Mysore Pak',
+    category: 'ghee',
+    price: 680.00,
+    rating: 5,
+    reviewsCount: 154,
+    img: 'assets/mysore_pak.png',
+    desc: "Sankla's signature Mysore Pak, inspired by the legendary royal sweet kitchens of South India. Crafted with premium gram flour, pure caramelized desi ghee, and organic sugar, offering a porous, melt-in-the-mouth texture."
+  },
+  {
+    id: 10,
+    title: 'Bellam Pootharekulu',
+    category: 'traditional',
+    price: 540.00,
+    rating: 5,
+    reviewsCount: 98,
+    img: 'assets/pootharekulu.png',
+    desc: 'A traditional Andhra delicacy crafted with wafer-thin layers of rice starch resembling translucent paper, generously brushed with pure desi ghee and stuffed with organic jaggery (bellam) and crushed dry fruits.'
+  },
+  {
+    id: 11,
+    title: 'Kaju Pista Roll',
+    category: 'dry-fruits',
+    price: 820.00,
+    rating: 4,
+    reviewsCount: 67,
+    img: 'assets/kaju_pista_roll.png',
+    desc: 'A premium dry-fruit sweet layered with rich cashew paste on the outside and a vibrant, nutty pistachio filling on the inside, lightly scented with cardamom.'
+  },
+  {
+    id: 12,
+    title: 'Traditional Jaggery Ariselu',
+    category: 'traditional',
+    price: 420.00,
+    rating: 5,
+    reviewsCount: 112,
+    img: 'assets/ariselu.png',
+    desc: 'An authentic South Indian festive sweet made of long-grain rice flour and organic dark jaggery, deep-fried in pure desi ghee to a chewy perfection, finished with sesame seeds.'
+  },
+  {
+    id: 13,
+    title: 'Premium Kaju Anjeer Roll',
+    category: 'dry-fruits',
+    price: 850.00,
+    rating: 5,
+    reviewsCount: 89,
+    img: 'assets/kaju_anjeer_roll.png',
+    desc: 'A healthy and luxurious confection featuring a soft casing of pure cashew paste wrapped around a rich, chewy center of premium imported figs (anjeer) and honey.'
+  },
+  {
+    id: 14,
+    title: 'Classic Milk Kalakand',
+    category: 'traditional',
+    price: 520.00,
+    rating: 4,
+    reviewsCount: 74,
+    img: 'assets/kalakand.png',
+    desc: 'A timeless milk sweet characterized by its grainy, moist texture and rich dairy aroma. Handcrafted by reducing pure whole milk, sweetened subtly, and garnished with saffron.'
+  },
+  {
+    id: 15,
+    title: 'Bellam Sunnundalu',
+    category: 'traditional',
+    price: 460.00,
+    rating: 5,
+    reviewsCount: 105,
+    img: 'assets/sunnundalu.png',
+    desc: 'A highly nutritious and traditional Andhra laddu made from roasted black gram (urad dal) flour, organic jaggery, and warm desi ghee.'
+  },
+  {
+    id: 16,
+    title: 'Royal Kesar Badusha',
+    category: 'ghee',
+    price: 480.00,
+    rating: 4,
+    reviewsCount: 63,
+    img: 'assets/badusha.png',
+    desc: 'Flaky, multi-layered sweet pastry made from refined flour, fried in pure ghee and soaked in a fragrant saffron and rose-infused sugar syrup.'
   }
 ];
 
+let PRODUCTS = [];
+if (localStorage.getItem('sankla_products')) {
+  PRODUCTS = JSON.parse(localStorage.getItem('sankla_products'));
+} else {
+  PRODUCTS = DEFAULT_PRODUCTS;
+  localStorage.setItem('sankla_products', JSON.stringify(PRODUCTS));
+}
+
 // Seed Reviews for detailed drawer views
-const PRODUCT_REVIEWS = {
+const DEFAULT_REVIEWS = {
   1: [
     { name: "Suresh K.", rating: 5, comment: "Authentic taste. The rich aroma of pure ghee reminds me of my grandmother's halwa." },
     { name: "Ananya M.", rating: 5, comment: "Incredibly smooth and not overly sweet. The almonds taste freshly ground." }
@@ -96,8 +184,41 @@ const PRODUCT_REVIEWS = {
   ],
   4: [
     { name: "Divya N.", rating: 5, comment: "Best Kaju Katli in town. Thin, smooth, and melts in the mouth instantly." }
+  ],
+  9: [
+    { name: "Satish P.", rating: 5, comment: "The Mysore Pak is incredibly soft and rich in ghee. Easily the best I have ever had!" },
+    { name: "Vasudha R.", rating: 5, comment: "Authentic royal taste. Melted in the mouth instantly." }
+  ],
+  10: [
+    { name: "Kalyan C.", rating: 5, comment: "Super thin layers. Traditional bellam flavor is spot on. Extremely fresh!" }
+  ],
+  11: [
+    { name: "Nikhil T.", rating: 4, comment: "Great balance of cashews and pistachios. Beautifully rolled and fresh." }
+  ],
+  12: [
+    { name: "Lakshmi K.", rating: 5, comment: "Crispy outer layer, soft and chewy inside. Sesame coating gives a perfect crunch." }
+  ],
+  13: [
+    { name: "Harish V.", rating: 5, comment: "Outstanding premium quality. Sugar-free and rich fig filling." }
+  ],
+  14: [
+    { name: "Sunitha B.", rating: 4, comment: "Very moist and perfectly grain textured. Cardamom and saffron fragrance is amazing." }
+  ],
+  15: [
+    { name: "Ravi Shankar", rating: 5, comment: "Superb traditional taste. Urad dal is perfectly roasted. Highly recommended for kids." }
+  ],
+  16: [
+    { name: "Manish S.", rating: 4, comment: "Extremely flaky and delicious Badusha. The saffron glaze is delightful." }
   ]
 };
+
+let PRODUCT_REVIEWS = {};
+if (localStorage.getItem('sankla_reviews')) {
+  PRODUCT_REVIEWS = JSON.parse(localStorage.getItem('sankla_reviews'));
+} else {
+  PRODUCT_REVIEWS = DEFAULT_REVIEWS;
+  localStorage.setItem('sankla_reviews', JSON.stringify(PRODUCT_REVIEWS));
+}
 
 // Global Store State
 let cart = [];
@@ -109,11 +230,33 @@ let activeDetailProductId = null;
 let detailQty = 1;
 
 // Global Site Testimonials Feed
-let testimonials = [
+const DEFAULT_TESTIMONIALS = [
   { name: "Meera Bai", rating: 5, comment: "Sankla sweets are an absolute masterpiece. Our family weddings are incomplete without their dry fruit boxes!" },
   { name: "Vikram Malhotra", rating: 5, comment: "The custom box builder is brilliant. I created a tailored box of Badam Halwa and Laddus for Diwali. Highly recommended!" },
   { name: "Aditi Sharma", rating: 4, comment: "Amazing freshness and beautiful box presentation. The Badam Halwa melts like absolute butter." }
 ];
+
+let testimonials = [];
+if (localStorage.getItem('sankla_testimonials')) {
+  testimonials = JSON.parse(localStorage.getItem('sankla_testimonials'));
+} else {
+  testimonials = DEFAULT_TESTIMONIALS;
+  localStorage.setItem('sankla_testimonials', JSON.stringify(testimonials));
+}
+
+// Orders State
+let orders = [];
+if (localStorage.getItem('sankla_orders')) {
+  orders = JSON.parse(localStorage.getItem('sankla_orders'));
+} else {
+  orders = [
+    { id: "ORD-94812", date: "2026-06-16 11:24:15", items: "Badam Halwa (x1), Pure Ghee Laddu (x2)", total: 1620.00, status: "completed" },
+    { id: "ORD-38194", date: "2026-06-17 09:15:30", items: "Bespoke 4-Piece Sankla Box (x1)", total: 540.00, status: "processing" },
+    { id: "ORD-73190", date: "2026-06-17 14:02:10", items: "Royal Kaju Katli (x2)", total: 1300.00, status: "pending" }
+  ];
+  localStorage.setItem('sankla_orders', JSON.stringify(orders));
+}
+
 
 // DOM elements
 const productsGridContainer = document.getElementById('products-grid-container');
@@ -343,6 +486,19 @@ function setupEventListeners() {
       showToast("Your cart is empty!");
       return;
     }
+    
+    // Create new order record for Admin Panel
+    const totalAmount = cart.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+    const newOrder = {
+      id: `ORD-${Math.floor(10000 + Math.random() * 90000)}`,
+      date: new Date().toISOString().slice(0, 19).replace('T', ' '),
+      items: cart.map(item => `${item.product.title} (x${item.quantity})`).join(', '),
+      total: totalAmount,
+      status: 'pending'
+    };
+    orders.unshift(newOrder);
+    localStorage.setItem('sankla_orders', JSON.stringify(orders));
+
     closeCart();
     checkoutOverlay.classList.add('active');
   });
@@ -387,9 +543,9 @@ function renderCatalog() {
     let starsHtml = '';
     for (let i = 1; i <= 5; i++) {
       if (i <= p.rating) {
-        starsHtml += '<span class="star">★</span>';
+        starsHtml += '<span class="star">â˜…</span>';
       } else {
-        starsHtml += '<span class="star star-empty">★</span>';
+        starsHtml += '<span class="star star-empty">â˜…</span>';
       }
     }
 
@@ -482,7 +638,7 @@ function updateBuilderBox() {
       comp.innerHTML = `
         <img src="${sweet.img}" alt="${sweet.title}">
         <span class="item-name">${sweet.title}</span>
-        <button class="remove-item" onclick="removeSweetFromBox(${i})">×</button>
+        <button class="remove-item" onclick="removeSweetFromBox(${i})">Ã—</button>
       `;
     } else {
       comp.innerHTML = `
@@ -542,7 +698,7 @@ function renderTestimonials() {
   let starsVal = '';
   const rounded = Math.round(average);
   for (let i = 1; i <= 5; i++) {
-    starsVal += i <= rounded ? '★' : '☆';
+    starsVal += i <= rounded ? 'â˜…' : 'â˜†';
   }
   aggregateStars.textContent = starsVal;
 }
@@ -567,7 +723,7 @@ function openProductDetail(productId) {
   // Fill rating stars
   let starsHtml = '';
   for (let i = 1; i <= 5; i++) {
-    starsHtml += i <= product.rating ? '★' : '☆';
+    starsHtml += i <= product.rating ? 'â˜…' : 'â˜†';
   }
   detailRatingStars.textContent = starsHtml;
   detailRatingText.textContent = `(${product.rating}.0 / 5.0 Rating)`;
@@ -580,7 +736,7 @@ function openProductDetail(productId) {
 
   detailReviewsList.innerHTML = '';
   reviews.forEach(r => {
-    let revStars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+    let revStars = 'â˜…'.repeat(r.rating) + 'â˜†'.repeat(5 - r.rating);
     const revEl = document.createElement('div');
     revEl.className = 'review-item-compact';
     revEl.innerHTML = `
@@ -639,7 +795,7 @@ function addToCart(product, qty) {
   }
 
   updateCartUI();
-  showToast(`Added ${qty} × ${product.title} to shopping cart!`);
+  showToast(`Added ${qty} Ã— ${product.title} to shopping cart!`);
 }
 
 function removeFromCart(productId) {
@@ -700,7 +856,7 @@ function updateCartUI() {
             <button class="cart-item-qty-btn" onclick="changeCartQty('${item.product.id}', 1)">+</button>
           </div>
         </div>
-        <button class="btn-remove-cart-item" onclick="removeFromCart('${item.product.id}')" aria-label="Remove item">×</button>
+        <button class="btn-remove-cart-item" onclick="removeFromCart('${item.product.id}')" aria-label="Remove item">Ã—</button>
       `;
       cartItemsContainer.appendChild(itemEl);
     });
@@ -727,7 +883,7 @@ function closeCart() {
 function showToast(message) {
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.innerHTML = `<span>✨</span> ${message}`;
+  toast.innerHTML = `<span>âœ¨</span> ${message}`;
   
   toastContainer.appendChild(toast);
   

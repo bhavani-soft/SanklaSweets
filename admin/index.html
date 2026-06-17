@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sankla Admin Portal | Staff Dashboard</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="../assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div id="login-screen" class="login-screen">
+    <div class="login-bg-pattern"></div>
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="brand-icon">🍬</div>
+        <h1 class="font-serif">Sankla Portal</h1>
+        <p>Staff Management Dashboard</p>
+      </div>
+      <div id="login-error" class="login-error" style="display:none;">Invalid credentials. Please try again.</div>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" class="form-control" placeholder="admin" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-login" id="btn-login">Sign In to Dashboard</button>
+      </form>
+      <a href="../index.html" class="back-link">← Return to Sankla Sweets Store</a>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" class="dashboard" style="display:none;">
+    
+    <!-- Top Navigation Bar -->
+    <header class="dash-header">
+      <div class="dash-header-left">
+        <button class="btn-sidebar-toggle" id="btn-sidebar-toggle" aria-label="Toggle Sidebar">☰</button>
+        <div class="dash-brand font-serif">Sankla Admin</div>
+      </div>
+      <div class="dash-header-right">
+        <span class="dash-welcome">Welcome, <strong>Admin</strong></span>
+        <span class="badge-active">● Active</span>
+        <button class="btn-logout" id="btn-logout">Sign Out</button>
+        <a href="../index.html" class="btn-view-store">View Store</a>
+      </div>
+    </header>
+
+    <div class="dash-layout">
+      <!-- Sidebar -->
+      <aside class="dash-sidebar" id="dash-sidebar">
+        <nav class="dash-nav">
+          <button class="nav-item active" data-tab="dashboard" id="nav-dashboard">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">Dashboard</span>
+          </button>
+          <button class="nav-item" data-tab="products" id="nav-products">
+            <span class="nav-icon">🍬</span>
+            <span class="nav-label">Products</span>
+          </button>
+          <button class="nav-item" data-tab="orders" id="nav-orders">
+            <span class="nav-icon">📦</span>
+            <span class="nav-label">Orders</span>
+          </button>
+          <button class="nav-item" data-tab="reviews" id="nav-reviews">
+            <span class="nav-icon">💬</span>
+            <span class="nav-label">Reviews</span>
+          </button>
+          <button class="nav-item" data-tab="inventory" id="nav-inventory">
+            <span class="nav-icon">📋</span>
+            <span class="nav-label">Inventory</span>
+            <span class="nav-badge" id="nav-low-stock-badge" style="display:none;">!</span>
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="dash-main">
+
+        <!-- ========== DASHBOARD TAB ========== -->
+        <section class="tab-pane active" id="tab-dashboard">
+          <div class="page-header">
+            <h2 class="font-serif">Performance Overview</h2>
+            <p>Real-time metrics from the Sankla Sweets storefront.</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stats-card revenue">
+              <div class="stats-icon">💰</div>
+              <div class="stats-body">
+                <div class="stats-label">Total Revenue</div>
+                <div class="stats-value" id="stat-revenue">Rs. 0.00</div>
+                <div class="stats-sub">From completed orders</div>
+              </div>
+            </div>
+            <div class="stats-card orders">
+              <div class="stats-icon">📦</div>
+              <div class="stats-body">
+                <div class="stats-label">Total Orders</div>
+                <div class="stats-value" id="stat-orders">0</div>
+                <div class="stats-sub">All checkouts recorded</div>
+              </div>
+            </div>
+            <div class="stats-card products">
+              <div class="stats-icon">🍬</div>
+              <div class="stats-body">
+                <div class="stats-label">Active Products</div>
+                <div class="stats-value" id="stat-products">0</div>
+                <div class="stats-sub">Sweets in the catalog</div>
+              </div>
+            </div>
+            <div class="stats-card rating">
+              <div class="stats-icon">⭐</div>
+              <div class="stats-body">
+                <div class="stats-label">Average Rating</div>
+                <div class="stats-value" id="stat-rating">5.0 ★</div>
+                <div class="stats-sub">Based on all reviews</div>
+              </div>
+            </div>
+            <div class="stats-card low-stock">
+              <div class="stats-icon">⚠️</div>
+              <div class="stats-body">
+                <div class="stats-label">Low Stock Items</div>
+                <div class="stats-value" id="stat-low-stock">0</div>
+                <div class="stats-sub">Products with ≤ 10 units</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Low Stock Alert Banner -->
+          <div class="low-stock-alert" id="low-stock-alert" style="display:none;">
+            <div class="low-stock-alert-icon">⚠️</div>
+            <div class="low-stock-alert-body">
+              <strong>Low Stock Warning</strong>
+              <span id="low-stock-alert-text">Some products are running low. Check Inventory tab.</span>
+            </div>
+            <button class="btn-link" onclick="switchTab('inventory')" style="color:#fff; font-weight:700;">View Inventory →</button>
+          </div>
+
+          <div class="welcome-banner">
+            <div class="welcome-icon font-serif">✦</div>
+            <div>
+              <h3 class="font-serif">Welcome to the Confectionery Dashboard</h3>
+              <p>Use the sidebar to manage the sweets catalog, process customer orders, and moderate patron reviews. All changes sync with the storefront instantly via localStorage.</p>
+            </div>
+          </div>
+
+          <!-- Recent Orders Preview -->
+          <div class="section-card" style="margin-top: 32px;">
+            <div class="section-card-header">
+              <h4 class="font-serif">Recent Orders</h4>
+              <button class="btn-link" onclick="switchTab('orders')">View All →</button>
+            </div>
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-orders-tbody">
+                  <tr><td colspan="5" class="empty-state">No orders yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== PRODUCTS TAB ========== -->
+        <section class="tab-pane" id="tab-products">
+          <div class="page-header">
+            <div>
+              <h2 class="font-serif">Sweets Catalog</h2>
+              <p>Add, edit, or remove sweets from the storefront.</p>
+            </div>
+            <button class="btn-primary" id="btn-add-product">+ Add Sweet</button>
+          </div>
+
+          <div class="section-card">
+            <div class="table-wrapper">
+              <table class="data-table" id="products-table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Sweet Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Rating</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="products-tbody">
+                  <tr><td colspan="7" class="empty-state">Loading products...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== ORDERS TAB ========== -->
+        <section class="tab-pane" id="tab-orders">
+          <div class="page-header">
+            <div>
+              <h2 class="font-serif">Customer Orders</h2>
+              <p>Manage and update the status of incoming delivery orders.</p>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Date & Time</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="orders-tbody">
+                  <tr><td colspan="6" class="empty-state">No orders recorded yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== REVIEWS TAB ========== -->
+        <section class="tab-pane" id="tab-reviews">
+          <div class="page-header">
+            <div>
+              <h2 class="font-serif">Review Moderation</h2>
+              <p>Manage patron testimonials and product reviews.</p>
+            </div>
+          </div>
+
+          <div class="section-card">
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Author</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="reviews-tbody">
+                  <tr><td colspan="5" class="empty-state">No reviews posted yet.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========== INVENTORY TAB ========== -->
+        <section class="tab-pane" id="tab-inventory">
+          <div class="page-header">
+            <div>
+              <h2 class="font-serif">Stock Inventory</h2>
+              <p>Monitor and update available stock quantities for each product.</p>
+            </div>
+            <div style="display:flex; gap:12px; align-items:center;">
+              <div class="inv-legend">
+                <span class="stock-dot in-stock"></span>In Stock
+                <span class="stock-dot low-stock" style="margin-left:12px;"></span>Low Stock
+                <span class="stock-dot out-of-stock" style="margin-left:12px;"></span>Out of Stock
+              </div>
+            </div>
+          </div>
+
+          <!-- Inventory Summary Cards -->
+          <div class="inv-summary-row" id="inv-summary-row"></div>
+
+          <!-- Inventory Table -->
+          <div class="section-card" style="margin-top:24px;">
+            <div class="section-card-header">
+              <h4 class="font-serif">All Products — Stock Status</h4>
+              <div style="display:flex; gap:8px;">
+                <input type="text" id="inv-search" class="form-control" style="width:200px; padding:8px 12px; font-size:0.85rem;" placeholder="Search products...">
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Stock Level</th>
+                    <th style="width:180px;">Quantity</th>
+                    <th>Update</th>
+                  </tr>
+                </thead>
+                <tbody id="inventory-tbody">
+                  <tr><td colspan="6" class="empty-state">Loading inventory...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Add/Edit Product Modal -->
+  <div class="modal-overlay" id="product-modal" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="font-serif" id="product-modal-title">Add New Sweet</h3>
+        <button class="btn-close-modal" id="btn-close-product-modal">×</button>
+      </div>
+      <form id="product-form">
+        <input type="hidden" id="product-id">
+        <div class="form-group">
+          <label for="product-title">Sweet Name</label>
+          <input type="text" id="product-title" class="form-control" required placeholder="e.g. Dry Fruit Halwa">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="product-category">Category</label>
+            <select id="product-category" class="form-control" required>
+              <option value="ghee">Pure Ghee Sweets</option>
+              <option value="dry-fruits">Dry Fruit Delicacies</option>
+              <option value="traditional">Traditional Classics</option>
+              <option value="boxes">Gift Hampers</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="product-price">Price (Rs.)</label>
+            <input type="number" id="product-price" class="form-control" step="0.01" min="1" required placeholder="e.g. 450.00">
+          </div>
+          <div class="form-group">
+            <label for="product-stock">Stock (Units)</label>
+            <input type="number" id="product-stock" class="form-control" min="0" value="50" required placeholder="e.g. 50">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="product-img-select">Image Asset</label>
+          <select id="product-img-select" class="form-control">
+            <option value="../assets/mysore_pak.png">Mysore Pak</option>
+            <option value="../assets/pootharekulu.png">Pootharekulu</option>
+            <option value="../assets/kaju_pista_roll.png">Kaju Pista Roll</option>
+            <option value="../assets/ariselu.png">Ariselu</option>
+            <option value="../assets/kaju_anjeer_roll.png">Kaju Anjeer Roll</option>
+            <option value="../assets/kalakand.png">Kalakand</option>
+            <option value="../assets/sunnundalu.png">Sunnundalu</option>
+            <option value="../assets/badusha.png">Badusha</option>
+            <option value="../assets/badam_halwa.png">Badam Halwa</option>
+            <option value="../assets/kaju_katli.png">Kaju Katli</option>
+            <option value="../assets/motichoor_laddu.png">Motichoor Laddu</option>
+            <option value="../assets/gift_box.png">Gift Box</option>
+            <option value="../assets/hero_sweets.png">Hero Sweets Assortment</option>
+          </select>
+          <input type="text" id="product-img-custom" class="form-control" style="margin-top:8px;" placeholder="Or paste custom image URL...">
+        </div>
+        <div class="form-group">
+          <label for="product-desc">Description</label>
+          <textarea id="product-desc" class="form-control" rows="4" required placeholder="Describe the ingredients, texture, and preparation..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;" id="btn-submit-product">Save Sweet</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
