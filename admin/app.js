@@ -105,7 +105,7 @@ function getStockBadgeHtml(stock) {
   return `
     <div class="stock-cell">
       <span class="stock-badge ${status}">${labels[status]}</span>
-      <span class="stock-number">${stock} units</span>
+      <span class="stock-number">${stock} kg</span>
     </div>`;
 }
 
@@ -117,7 +117,7 @@ function getStockBarHtml(stock, maxStock = 100) {
       <div class="stock-bar">
         <div class="stock-bar-fill ${status}" style="width:${pct}%"></div>
       </div>
-      <span class="stock-bar-label">${stock} / ${maxStock}</span>
+      <span class="stock-bar-label">${stock} kg / ${maxStock} kg</span>
     </div>`;
 }
 
@@ -204,7 +204,7 @@ function setupEvents() {
       localStorage.setItem('admin_logged_in', 'true');
       loginError.style.display = 'none';
       showDashboard();
-      showToast('✦ Welcome back, Admin!');
+      showToast('✔ Welcome back, Admin!');
     } else {
       loginError.style.display = 'block';
     }
@@ -339,7 +339,7 @@ function renderProductsTable() {
       <td><span class="cat-badge">${p.category}</span></td>
       <td style="font-weight:700; color:var(--primary)">Rs. ${p.price.toFixed(2)}</td>
       <td>${getStockBadgeHtml(stock)}</td>
-      <td style="color:var(--accent)">${'★'.repeat(p.rating)}${'☆'.repeat(5 - p.rating)}</td>
+      <td style="color:var(--accent)">${'&#9733;'.repeat(p.rating)}${'&#9734;'.repeat(5 - p.rating)}</td>
       <td>
         <button class="btn-action edit" onclick="adminEditProduct(${p.id})">Edit</button>
         <button class="btn-action delete" onclick="adminDeleteProduct(${p.id})">Delete</button>
@@ -400,7 +400,7 @@ function renderInventorySummary() {
       <div class="inv-sum-icon" style="background:#e8f0ff; color:#3b5bdb;">📦</div>
       <div class="inv-sum-body">
         <div class="inv-sum-val" style="color:#3b5bdb;">${totalUnits}</div>
-        <div class="inv-sum-label">Total Units</div>
+        <div class="inv-sum-label">Total Stock (kg)</div>
       </div>
     </div>
   `;
@@ -457,7 +457,7 @@ function renderInventoryTable(filter = '') {
       </td>
       <td>
         <button class="btn-action edit" onclick="saveStockFromInput(${p.id})" title="Save quantity">💾 Save</button>
-        ${stock <= STOCK_LOW_THRESHOLD ? `<button class="btn-action status" onclick="restockProduct(${p.id})" title="Restock to 50 units" style="margin-top:4px;">Restock</button>` : ''}
+        ${stock <= STOCK_LOW_THRESHOLD ? `<button class="btn-action status" onclick="restockProduct(${p.id})" title="Restock to 50 kg" style="margin-top:4px;">Restock</button>` : ''}
       </td>
     `;
     tbody.appendChild(tr);
@@ -474,7 +474,7 @@ window.adjustStock = function(id, delta) {
   const input = document.getElementById(`stock-input-${id}`);
   if (input) input.value = newVal;
 
-  saveAndRefreshInventory(`Stock updated for ${PRODUCTS[idx].title}.`);
+  saveAndRefreshInventory(`✔ Stock updated for ${PRODUCTS[idx].title}.`);
 };
 
 window.setStock = function(id, value) {
@@ -490,7 +490,7 @@ window.saveStockFromInput = function(id) {
   const idx = PRODUCTS.findIndex(p => String(p.id) === String(id));
   if (idx === -1) return;
   PRODUCTS[idx].stock = Math.max(0, parseInt(input.value) || 0);
-  saveAndRefreshInventory(`✦ Stock saved: ${PRODUCTS[idx].title} → ${PRODUCTS[idx].stock} units`);
+  saveAndRefreshInventory(`✔ Stock saved: ${PRODUCTS[idx].title} → ${PRODUCTS[idx].stock} kg`);
 };
 
 window.restockProduct = function(id) {
@@ -499,7 +499,7 @@ window.restockProduct = function(id) {
   PRODUCTS[idx].stock = 50;
   const input = document.getElementById(`stock-input-${id}`);
   if (input) input.value = 50;
-  saveAndRefreshInventory(`✦ Restocked: ${PRODUCTS[idx].title} → 50 units`);
+  saveAndRefreshInventory(`✔ Restocked: ${PRODUCTS[idx].title} → 50 kg`);
 };
 
 function saveAndRefreshInventory(toastMsg = null) {
@@ -558,7 +558,7 @@ function renderReviewsTable() {
     return;
   }
   list.forEach(r => {
-    const stars = '★'.repeat(r.rating) + '☆'.repeat(5 - r.rating);
+    const stars = '&#9733;'.repeat(r.rating) + '&#9734;'.repeat(5 - r.rating);
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><span style="font-size:0.78rem;font-weight:700;text-transform:uppercase;color:var(--accent-dark)">${r.type}</span></td>

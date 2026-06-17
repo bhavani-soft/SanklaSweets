@@ -1,4 +1,4 @@
-﻿// Product Database Seeds
+ï»¿// Product Database Seeds
 const DEFAULT_PRODUCTS = [
   {
     id: 1,
@@ -543,9 +543,9 @@ function renderCatalog() {
     let starsHtml = '';
     for (let i = 1; i <= 5; i++) {
       if (i <= p.rating) {
-        starsHtml += '<span class="star">â˜…</span>';
+        starsHtml += '<span class="star">&#9733;</span>';
       } else {
-        starsHtml += '<span class="star star-empty">â˜…</span>';
+        starsHtml += '<span class="star star-empty">&#9734;</span>';
       }
     }
 
@@ -638,7 +638,7 @@ function updateBuilderBox() {
       comp.innerHTML = `
         <img src="${sweet.img}" alt="${sweet.title}">
         <span class="item-name">${sweet.title}</span>
-        <button class="remove-item" onclick="removeSweetFromBox(${i})">Ã—</button>
+        <button class="remove-item" onclick="removeSweetFromBox(${i})">Ãƒâ€”</button>
       `;
     } else {
       comp.innerHTML = `
@@ -698,7 +698,7 @@ function renderTestimonials() {
   let starsVal = '';
   const rounded = Math.round(average);
   for (let i = 1; i <= 5; i++) {
-    starsVal += i <= rounded ? 'â˜…' : 'â˜†';
+    starsVal += i <= rounded ? 'Ã¢Ëœâ€¦' : 'Ã¢Ëœâ€ ';
   }
   aggregateStars.textContent = starsVal;
 }
@@ -723,7 +723,7 @@ function openProductDetail(productId) {
   // Fill rating stars
   let starsHtml = '';
   for (let i = 1; i <= 5; i++) {
-    starsHtml += i <= product.rating ? 'â˜…' : 'â˜†';
+    starsHtml += i <= product.rating ? '&#9733;' : '&#9734;';
   }
   detailRatingStars.textContent = starsHtml;
   detailRatingText.textContent = `(${product.rating}.0 / 5.0 Rating)`;
@@ -736,7 +736,7 @@ function openProductDetail(productId) {
 
   detailReviewsList.innerHTML = '';
   reviews.forEach(r => {
-    let revStars = 'â˜…'.repeat(r.rating) + 'â˜†'.repeat(5 - r.rating);
+    let revStars = '&#9733;'.repeat(r.rating) + '&#9734;'.repeat(5 - r.rating);
     const revEl = document.createElement('div');
     revEl.className = 'review-item-compact';
     revEl.innerHTML = `
@@ -795,7 +795,7 @@ function addToCart(product, qty) {
   }
 
   updateCartUI();
-  showToast(`Added ${qty} Ã— ${product.title} to shopping cart!`);
+  showToast(`Added ${qty} Ãƒâ€” ${product.title} to shopping cart!`);
 }
 
 function removeFromCart(productId) {
@@ -856,7 +856,7 @@ function updateCartUI() {
             <button class="cart-item-qty-btn" onclick="changeCartQty('${item.product.id}', 1)">+</button>
           </div>
         </div>
-        <button class="btn-remove-cart-item" onclick="removeFromCart('${item.product.id}')" aria-label="Remove item">Ã—</button>
+        <button class="btn-remove-cart-item" onclick="removeFromCart('${item.product.id}')" aria-label="Remove item">Ãƒâ€”</button>
       `;
       cartItemsContainer.appendChild(itemEl);
     });
@@ -883,7 +883,7 @@ function closeCart() {
 function showToast(message) {
   const toast = document.createElement('div');
   toast.className = 'toast';
-  toast.innerHTML = `<span>âœ¨</span> ${message}`;
+  toast.innerHTML = `<span>Ã¢Å“Â¨</span> ${message}`;
   
   toastContainer.appendChild(toast);
   
